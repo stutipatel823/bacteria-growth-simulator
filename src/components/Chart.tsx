@@ -7,7 +7,7 @@ interface ChartProps {
 
 const Chart: React.FC<ChartProps> = ({ growthData, type }) => {
   const svgHeight = 233;
-  const svgWidth = 495;
+  const svgWidth = 485;
   const barWidth = svgWidth / (growthData.length);
 
   let maxActive = 0;
@@ -27,6 +27,7 @@ const Chart: React.FC<ChartProps> = ({ growthData, type }) => {
           height={svgHeight}
           fill="#ececec"
           stroke="#D3D3D3"
+          // stroke="red"
           strokeWidth="2"
         />
 

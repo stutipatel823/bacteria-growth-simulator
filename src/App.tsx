@@ -5,8 +5,7 @@ import "./App.css";
 import Chart from "./components/Chart";
 
 const App = () => {
-  const [size, setSize] = useState<number>(20); // State for grid size
-
+  const [size, setSize] = useState<number>(20); 
   const [selectedSpeed, setSelectedSpeed] = useState<number>(1000);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [grid, setGrid] = useState<boolean[][]>(initializeGrid(size));
@@ -69,7 +68,7 @@ const App = () => {
   };
   const bacteriaDivision = () => {
     const newActiveCells: Array<{ r: number; c: number }> = [];
-
+    const newGrid = grid.map((row) => row);
     activeCells.forEach((cell) => {
       const { r, c } = cell;
 
@@ -91,7 +90,7 @@ const App = () => {
           newY < size &&
           !grid[newX][newY]
         ) {
-          grid[newX][newY] = true;
+          newGrid[newX][newY] = true; 
           newActiveCells.push({ r: newX, c: newY });
           // continueSpread = false;
         }
@@ -116,9 +115,10 @@ const App = () => {
       return; // end the simulator (stop spreading)
     }
 
-    setGrid(grid);
+    setGrid(newGrid); // Set the new state
     // setActiveCells(activeCells.concat(newActiveCells));
     setActiveCells(newActiveCells);
+
 
     setGrowthData((prevGrowthData) => {
       return prevGrowthData.concat({
